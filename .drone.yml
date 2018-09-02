@@ -4,3 +4,9 @@ pipeline:
     commands:
       - npm install
       - npm test
+  docker_publish:
+    image: plugins/docker
+    repo: omarvides/dockerized-api
+    dockerfile: docker/Dockerfile
+    auto_tag: true
+    secrets: [ docker_username, docker_password ]
