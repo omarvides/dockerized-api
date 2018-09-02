@@ -4,6 +4,7 @@ pipeline:
     commands:
       - npm install
       - npm test
+      - echo -n "1.0.0" > .tags
   docker_publish:
     image: plugins/docker
     repo: omarvides/dockerized-api
