@@ -4,7 +4,6 @@ pipeline:
     commands:
       - npm install
       - npm test
-      - echo -n "1.0.0" > .tags
   docker_publish:
     image: plugins/docker:17.12
     repo: omarvides/dockerized-api
@@ -13,3 +12,17 @@ pipeline:
     secrets: [ docker_username, docker_password ]
     when:
       event: [ tag ]
+  deploy:
+    ecs:
+      image: peloton/drone-ecs
+      service: service1
+      region: us-west-1
+      family: dockerized-api
+      image_name: omarvides/dockerized-api
+      image_tag: latest
+      port_mappings:
+        - 3000 3000
+      secrets: [aws_secret_access_key, aws_access_key_id]
+    when:
+      event: deployment
+      environment: production
