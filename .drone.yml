@@ -14,7 +14,7 @@ pipeline:
       event: [ tag ]
   ecs:
     image: peloton/drone-ecs
-    service: service1
+    service: dockerized-api
     region: us-west-1
     family: dockerized-api
     image_name: omarvides/dockerized-api
@@ -22,6 +22,7 @@ pipeline:
     port_mappings:
       - 3000 3000
     secrets: [aws_secret_access_key, aws_access_key_id]
+    memory: 128
     when:
       event: deployment
       environment: production
