@@ -12,17 +12,19 @@ pipeline:
     secrets: [ docker_username, docker_password ]
     when:
       event: [ tag ]
-  deploy:
-    ecs:
-      image: peloton/drone-ecs
-      service: service1
-      region: us-west-1
-      family: dockerized-api
-      image_name: omarvides/dockerized-api
-      image_tag: latest
-      port_mappings:
-        - 3000 3000
-      secrets: [aws_secret_access_key, aws_access_key_id]
+  ecs:
+    image: peloton/drone-ecs
+    service: dockerized-api
+    access_key: aws_access_key_id
+    secret_key: aws_secret_access_key
+    region: us-west-1
+    family: dockerized-api
+    image_name: omarvides/dockerized-api
+    image_tag: latest
+    port_mappings:
+      - 3000 3000
+    secrets: [aws_secret_access_key, aws_access_key_id]
+    memory: 128
     when:
       event: deployment
       environment: production
