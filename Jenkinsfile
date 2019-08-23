@@ -7,6 +7,7 @@ pipeline {
     } 
     stages {
         stage('Test') {
+            when { triggeredBy 'SCMTrigger' }
             steps {
                 sh 'npm install'
                 sh 'npm test'
