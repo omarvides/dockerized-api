@@ -2,8 +2,8 @@ pipeline {
     agent { docker 'node:lts-alpine' } 
     stages {
         stage('Test') {
-            label 'docker'
             steps {
+                label 'docker'
                 sh 'npm install'
                 sh 'npm test'
             }
