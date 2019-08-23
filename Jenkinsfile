@@ -2,14 +2,8 @@ pipeline {
   agent {
     docker {
       image 'node:lts'
+      label 'docker'
     }
 
-  }
-  stages {
-    stage('test') {
-      steps {
-        sh 'npm test'
-      }
-    }
   }
 }
