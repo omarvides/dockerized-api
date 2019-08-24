@@ -1,12 +1,10 @@
 pipeline {
-    agent {
-      label 'docker'
-    } 
     stages {
         stage('Test') {
             when { triggeredBy 'SCMTrigger' }
             agent {
                 docker {
+                    label 'docker'
                     image 'node:lts-alpine'
                 }
             }
