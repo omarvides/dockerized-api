@@ -1,9 +1,6 @@
 pipeline {
     agent {
       label 'docker'
-        docker {
-            image 'node:lts-alpine'
-        }
     } 
     stages {
         stage('Test') {
