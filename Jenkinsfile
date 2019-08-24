@@ -4,7 +4,6 @@ pipeline {
     }
     stages {
         stage('Test LTS') {
-            when { triggeredBy 'SCMTrigger' }
             agent {
                 docker {
                     label 'docker'
@@ -17,7 +16,6 @@ pipeline {
             }
         }
         stage('Test Maintenance') {
-            when { triggeredBy 'SCMTrigger' }
             agent {
                 docker {
                     label 'docker'
