@@ -14,9 +14,25 @@ jobs:
       - checkout
       - run: yarn install 
       - run: yarn test
+  build-docker:
+    docker:
+      - image: docker:18.09.6
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: false
+      - run:
+          name: Building image
+          command: |
+            docker build -t dockerized-app -f docker/Dockerfile .
+      
 workflows:
   version: 2
   build_current_next:
     jobs:
       - build-current
       - build-next
+      - dockerized-app:
+          requires:
+            - build-current
+            - build-next
