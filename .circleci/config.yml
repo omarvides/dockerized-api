@@ -1,9 +1,22 @@
 version: 2
 jobs:
-  build:
+  build-current:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: yarn install 
       - run: yarn test
+  build-next:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - run: yarn install 
+      - run: yarn test
+workflows:
+  version: 2
+  build_current_next:
+    jobs:
+      - build-current
+      - build-next
