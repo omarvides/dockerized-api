@@ -1,6 +1,7 @@
 # Dockerized APP
 
-This is a demo app, that I'll use to build on a drone.io server and publish its image to docker registry
+This is a very basic repository to show how to make builds for nodejs apps using and different types of
+CI tools
 
 This app can be published using drone.io
 
